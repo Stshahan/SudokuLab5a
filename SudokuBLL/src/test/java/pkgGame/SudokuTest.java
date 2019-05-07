@@ -130,7 +130,7 @@ public class SudokuTest {
 	public void Sudoku_FullPuzzle_1()
 	{
 		try {
-			Sudoku s1 = new Sudoku(9, eGameDifficulty.HARD);
+			Sudoku s1 = new Sudoku(4, eGameDifficulty.HARD);
 			s1.PrintPuzzle();
 			assertTrue(s1.isPartialSudoku());
 			assertFalse(s1.isSudoku());

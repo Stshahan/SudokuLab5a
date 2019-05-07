@@ -27,28 +27,27 @@ public class GameBorderController implements Initializable {
 	public void setMainApp(Game game) {
 		this.game = game;
 	}
-
+//changed implementations for GetGameDifficulty and GetGameSize
 	public int GetGameSize() {
 		RadioMenuItem rmi = (RadioMenuItem) tglSudokuSize.getSelectedToggle();
-
-		return Integer.parseInt(rmi.getText());
+		int gameSize=4;
+		if(rmi.getText().contentEquals("4"))
+			gameSize=4;
+		if(rmi.getText().contentEquals("9"))
+			gameSize=9;
+			return gameSize;
 	}
 
 	public eGameDifficulty GetGameDifficulty() {
 		RadioMenuItem rmi = (RadioMenuItem) tglDifficulty.getSelectedToggle();
-		eGameDifficulty eGD = null;
-
-		switch (rmi.getText()) {
-		case "Easy":
+		eGameDifficulty eGD = eGameDifficulty.MEDIUM;
+		if(rmi.getText().contentEquals("Easy"))
 			eGD = eGameDifficulty.EASY;
-			break;
-		case " Medium":
+		if(rmi.getText().contentEquals("Medium"))
 			eGD = eGameDifficulty.MEDIUM;
-			break;
-		case "Hard":
+		if(rmi.getText().contentEquals("Hard"))
 			eGD = eGameDifficulty.HARD;
-			break;
-		}
+		
 		return eGD;
 	}
 

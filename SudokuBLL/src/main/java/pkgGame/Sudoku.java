@@ -72,7 +72,7 @@ public class Sudoku extends LatinSquare implements Serializable {
 	
 	public Sudoku(int iSize, eGameDifficulty eGD) throws Exception
 	{
-		this(iSize);
+		this (iSize);
 		this.eGD = eGD;
 		RemoveZeros();
 		
@@ -96,7 +96,7 @@ public class Sudoku extends LatinSquare implements Serializable {
 		fillRemaining(this.cells.get(Objects.hash(0, iSqrtSize)));
 
 		
-		this.eGD  = eGameDifficulty.HARD;
+		this.eGD  = eGameDifficulty.EASY;
 		RemoveZeros();
 	}
 
@@ -158,7 +158,7 @@ public class Sudoku extends LatinSquare implements Serializable {
 		for (int iRow = 0; iRow < iSize; iRow++) {
 			for (int iCol = 0; iCol < iSize; iCol++) {
 				SudokuCell c = new SudokuCell(iRow, iCol);
-				c.setlstValidValues(getAllValidCellValues(iCol, iRow));
+				c.setlstValidValues(getAllValidCellValues​(iCol, iRow));
 				c.ShuffleValidValues();
 				cells.put(c.hashCode(), c);
 			}
@@ -193,7 +193,26 @@ public class Sudoku extends LatinSquare implements Serializable {
 	 * @param iRow - given row
 	 * @return
 	 */
-	private HashSet<Integer> getAllValidCellValues(int iCol, int iRow) {
+private java.util.HashSet<java.lang.Integer> getAllValidCellValues​(int iCol, int iRow){
+		
+		HashSet <Integer> usedNumbers = new HashSet <Integer>();
+		HashSet <Integer> unUsedNumbers = new HashSet <Integer>();
+		 int [] Region = (this.getRegion(iCol,iRow));
+		 int [] Row= (this.getRow(iRow));
+		 int [] Column= (this.getColumn(iCol));
+		 
+		 for(int i=0; i<iSize; i++) {
+			 usedNumbers.add(Region[i]);
+			 usedNumbers.add(Row[i]);
+			 usedNumbers.add(Column[i]);
+			 unUsedNumbers.add(i+1);
+			 }
+		 unUsedNumbers.removeAll(usedNumbers);
+		 
+		return unUsedNumbers;
+}
+	
+	/*private HashSet<Integer> getAllValidCellValues(int iCol, int iRow) {
 
 		HashSet<Integer> hsCellRange = new HashSet<Integer>();
 		for (int i = 0; i < iSize; i++) {
@@ -204,9 +223,9 @@ public class Sudoku extends LatinSquare implements Serializable {
 		Collections.addAll(hsUsedValues, Arrays.stream(super.getColumn(iCol)).boxed().toArray(Integer[]::new));
 		Collections.addAll(hsUsedValues, Arrays.stream(this.getRegion(iCol, iRow)).boxed().toArray(Integer[]::new));
 
-		hsCellRange.removeAll(hsUsedValues);
+		//hsCellRange.removeAll(hsUsedValues);
 		return hsCellRange;
-	}
+	}*/
 
 	/**
 	 * getPuzzle - return the Sudoku puzzle

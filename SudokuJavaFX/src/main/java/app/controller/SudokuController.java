@@ -65,14 +65,14 @@ public class SudokuController implements Initializable {
 
 		for (int iCol = 0; iCol < s.getiSize(); iCol++) {
 			ColumnConstraints colCon = new ColumnConstraints();
-			// colCon.setMaxWidth(100);
+			//colCon.setMaxWidth(100);
 			colCon.setHgrow(Priority.NEVER);
 			colCon.halignmentProperty().set(HPos.CENTER);
-			colCon.setMinWidth(35);
+			colCon.setMinWidth(40);
 			gridPane.getColumnConstraints().add(colCon);
 
 			RowConstraints rowCon = new RowConstraints();
-			rowCon.setMinHeight(35);
+			rowCon.setMinHeight(40);
 			rowCon.setVgrow(Priority.NEVER);
 			rowCon.valignmentProperty().set(VPos.CENTER);
 			gridPane.getRowConstraints().add(rowCon);
